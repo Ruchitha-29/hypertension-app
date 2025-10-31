@@ -1,0 +1,50 @@
+{
+  "Gender": {
+    "Female": 0,
+    "Male": 1
+  },
+  "Severity": {
+    "Mild": 0,
+    "Moderate": 1,
+    "Sever": 2
+  },
+  "History": {
+    "No": 0,
+    "Yes": 1
+  },
+  "Patient": {
+    "No": 0,
+    "Yes": 1
+  },
+  "TakeMedication": {
+    "No": 0,
+    "Yes": 1
+  },
+  "BreathShortness": {
+    "No": 0,
+    "Yes": 1
+  },
+  "VisualChanges": {
+    "No": 0,
+    "Yes": 1
+  },
+  "NoseBleeding": {
+    "No": 0,
+    "Yes": 1
+  },
+  "ControlledDiet": {
+    "No": 0,
+    "Yes": 1
+  },
+  "Stages": {
+    "HYPERTENSION (Stage-1)": 0,
+    "HYPERTENSION (Stage-2)": 1,
+    "HYPERTENSIVE CRISIS": 2,
+    "NORMAL": 3
+  },
+  "Whendiagnoused": {
+    "1 - 5 Years": 0,
+    "<1 Year": 1,
+    ">5 Years": 2
+  }
+}
