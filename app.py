@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
-import numpy as np
+import os
 import pickle
 import json
+import numpy as np
+from flask import Flask, render_template, request
 
-# Load model
+# Load trained model
 with open("model.pkl", "rb") as f:
     model = pickle.load(f)
 
@@ -24,25 +25,14 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        gender = float(request.form['Gender'])
-        age = float(request.form['Age'])
-        history = float(request.form['History'])
-        patient = float(request.form['Patient'])
-        take_med = float(request.form['TakeMedication'])
-        severity = float(request.form['Severity'])
-        breath = float(request.form['BreathShortness'])
-        visual = float(request.form['VisualChanges'])
-        nose = float(request.form['NoseBleeding'])
-        whendiag = float(request.form['Whendiagnoused'])
-        systolic = float(request.form['Systolic'])
-        diastolic = float(request.form['Diastolic'])
-        controldiet = float(request.form['ControlledDiet'])
-        family = float(request.form['FamilyHistory'])
+        # Collect form data
+        features = np.array([[float(request.form[name]) for name in [
+            "Gender","Age","History","Patient","TakeMedication","Severity",
+            "BreathShortness","VisualChanges","NoseBleeding","Whendiagnoused",
+            "Systolic","Diastolic","ControlledDiet","FamilyHistory"
+        ]]])
 
-        features = np.array([[gender, age, history, patient, take_med, severity,
-                              breath, visual, nose, whendiag, systolic, diastolic,
-                              controldiet, family]])
-
+        # Make prediction
         prediction = model.predict(features)
         stage = reverse_mappings['Stages'].get(int(prediction[0]), "Unknown")
 
@@ -58,11 +48,11 @@ def predict():
         <div style='text-align:center; font-family:Arial; margin-top:50px;'>
             <h2>🩺 Predicted Stage:</h2>
             <h1 style='color:{color};'>{stage}</h1>
-            <a href="/" style='display:inline-block; margin-top:20px;'>🔙 Predict Again</a>
         </div>
         """
     except Exception as e:
         return f"<h3>Error: {e}</h3>"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's port
+    app.run(host="0.0.0.0", port=port)
