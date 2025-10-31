@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hypertension Stage Prediction</title>
+    <style>
+        body {font-family: Arial; background: #eef2f3; padding: 20px;}
+        .container {max-width:500px; margin:0 auto; background:white; padding:20px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+        input, select, button {width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ccc;}
+        button {background:#4CAF50; color:white; font-size:16px; cursor:pointer;}
+        h2 {text-align:center;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>🩺 Hypertension Stage Predictor</h2>
+    <form action="/predict" method="post">
+        <label>Gender:</label>
+        <select name="Gender"><option value="1">Male</option><option value="0">Female</option></select>
+        <label>Age:</label>
+        <input type="number" name="Age" required>
+        <label>History (High BP):</label>
+        <select name="History"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Patient (Yes=1, No=0):</label>
+        <select name="Patient"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Take Medication:</label>
+        <select name="TakeMedication"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Severity (0=Mild,1=Moderate,2=Severe):</label>
+        <select name="Severity"><option value="0">Mild</option><option value="1">Moderate</option><option value="2">Severe</option></select>
+        <label>Breath Shortness (Yes=1, No=0):</label>
+        <select name="BreathShortness"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Visual Changes (Yes=1, No=0):</label>
+        <select name="VisualChanges"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Nose Bleeding (Yes=1, No=0):</label>
+        <select name="NoseBleeding"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>When Diagnosed:</label>
+        <select name="Whendiagnoused"><option value="0">1-5 Years</option><option value="1"><1 Year</option><option value="2">>5 Years</option></select>
+        <label>Systolic BP:</label>
+        <input type="number" name="Systolic" required>
+        <label>Diastolic BP:</label>
+        <input type="number" name="Diastolic" required>
+        <label>Controlled Diet (Yes=1, No=0):</label>
+        <select name="ControlledDiet"><option value="1">Yes</option><option value="0">No</option></select>
+        <label>Family History (Yes=1, No=0):</label>
+        <select name="FamilyHistory"><option value="1">Yes</option><option value="0">No</option></select>
+        <button type="submit">Predict Stage</button>
+    </form>
+</div>
+</body>
+</html>
